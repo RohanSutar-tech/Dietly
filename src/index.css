@@ -1,0 +1,238 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Smart Indian Diet System - Medical Blue Theme Design System */
+
+@layer base {
+  :root {
+    /* Medical Blue Theme - Primary Colors */
+    --background: 210 25% 98%;
+    --foreground: 215 15% 15%;
+    
+    /* Card & Surface Colors */
+    --card: 210 30% 97%;
+    --card-foreground: 215 15% 20%;
+    
+    /* Primary Medical Blue Brand Colors */
+    --primary: 210 70% 50%;
+    --primary-light: 210 65% 60%;
+    --primary-dark: 210 75% 40%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Secondary Colors */
+    --secondary: 215 20% 92%;
+    --secondary-foreground: 215 15% 25%;
+    
+    /* Accent & Highlight */
+    --accent: 205 40% 88%;
+    --accent-foreground: 215 20% 15%;
+    
+    /* Muted Colors */
+    --muted: 210 15% 95%;
+    --muted-foreground: 215 10% 50%;
+    
+    /* Health Status Colors */
+    --success: 145 65% 45%;
+    --success-light: 145 55% 60%;
+    --warning: 35 85% 60%;
+    --warning-light: 35 70% 75%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* UI Elements */
+    --border: 210 20% 88%;
+    --input: 210 20% 94%;
+    --ring: 210 70% 50%;
+    --popover: 210 30% 98%;
+    --popover-foreground: 215 15% 20%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(210, 70%, 50%), hsl(205, 65%, 60%));
+    --gradient-secondary: linear-gradient(180deg, hsl(210, 25%, 96%), hsl(215, 20%, 92%));
+    --gradient-hero: linear-gradient(135deg, hsl(210, 70%, 50%), hsl(215, 65%, 55%), hsl(205, 60%, 65%));
+    
+    /* Shadows - Enhanced */
+    --shadow-sm: 0 2px 8px -2px hsl(210, 20%, 85%);
+    --shadow-md: 0 8px 16px -4px hsl(210, 18%, 75%);
+    --shadow-lg: 0 16px 32px -8px hsl(210, 15%, 70%);
+    --shadow-xl: 0 24px 48px -12px hsl(210, 20%, 65%);
+    --shadow-glow: 0 0 32px hsl(210, 70%, 50%, 0.4);
+    --shadow-soft: 0 4px 24px -4px hsl(210, 10%, 80%);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    
+    /* Radius */
+    --radius: 12px;
+    
+    --sidebar-background: 210 15% 96%;
+    --sidebar-foreground: 215 15% 25%;
+    --sidebar-primary: 210 70% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 215 20% 92%;
+    --sidebar-accent-foreground: 215 15% 25%;
+    --sidebar-border: 210 20% 88%;
+    --sidebar-ring: 210 70% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary));
+    border-radius: 3px;
+  }
+}
+
+@layer components {
+  /* Gradient text utility */
+  .gradient-text {
+    @apply bg-gradient-primary bg-clip-text text-transparent;
+  }
+  
+  /* Glass morphism effect */
+  .glass {
+    backdrop-filter: blur(10px);
+    background: hsla(var(--card), 0.8);
+    border: 1px solid hsla(var(--border), 0.5);
+  }
+  
+  /* Animated gradient background */
+  .animate-gradient {
+    background: linear-gradient(
+      45deg,
+      hsl(var(--primary)),
+      hsl(var(--primary-light)),
+      hsl(var(--accent)),
+      hsl(var(--primary-light)),
+      hsl(var(--primary))
+    );
+    background-size: 300% 300%;
+    animation: gradient-shift 6s ease infinite;
+  }
+  
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  
+  /* Floating animation */
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  /* Pulse glow effect */
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes pulse-glow {
+    from { box-shadow: 0 0 20px hsl(var(--primary), 0.3); }
+    to { box-shadow: 0 0 30px hsl(var(--primary), 0.6); }
+  }
+  
+  /* Enhanced shadow utilities */
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .shadow-diet-lg {
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .shadow-xl {
+    box-shadow: var(--shadow-xl);
+  }
+  
+  /* Smooth transitions */
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  
+  /* Scale on hover */
+  .hover-scale {
+    transition: var(--transition-smooth);
+  }
+  
+  .hover-scale:hover {
+    transform: scale(1.02);
+  }
+  
+  /* Slide up animation */
+  .slide-up {
+    animation: slide-up 0.5s ease-out;
+  }
+  
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Fade in animation */
+  .fade-in {
+    animation: fade-in 0.4s ease-out;
+  }
+  
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  /* Step indicator line */
+  .step-line {
+    position: relative;
+  }
+  
+  .step-line::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: hsl(var(--border));
+    transform: translateY(-50%);
+  }
+  
+  .step-line-active::before {
+    background: hsl(var(--primary));
+  }
+}
