@@ -55,12 +55,37 @@ export const MultiStepForm = ({ onSubmit }) => {
   };
 
   const handleDiseaseChange = (disease, checked) => {
-    setFormData(prev => ({
-      ...prev,
-      diseases: checked 
-        ? [...prev.diseases, disease]
-        : prev.diseases.filter(d => d !== disease)
-    }));
+    setFormData(prev => {
+      // If "None" is being checked, clear all other selections
+      if (disease === 'None' && checked) {
+        return {
+          ...prev,
+          diseases: ['None']
+        };
+      }
+
+      // If "None" is being unchecked, just remove it
+      if (disease === 'None' && !checked) {
+        return {
+          ...prev,
+          diseases: []
+        };
+      }
+
+      // If any other disease is being checked, remove "None" and add the disease
+      if (checked) {
+        return {
+          ...prev,
+          diseases: [...prev.diseases.filter(d => d !== 'None'), disease]
+        };
+      }
+
+      // If any other disease is being unchecked, just remove it
+      return {
+        ...prev,
+        diseases: prev.diseases.filter(d => d !== disease)
+      };
+    });
   };
 
   const isStepValid = () => {
@@ -79,28 +104,28 @@ export const MultiStepForm = ({ onSubmit }) => {
   };
 
   return (
-    <div 
+    <div
       className="min-h-screen py-8 px-4 bg-cover bg-center bg-fixed relative"
       style={{ backgroundImage: `url(${indianDietBg})` }}
     >
       <div className="absolute  bg-background "></div>
-      
+
       <div className="max-w-4xl mx-auto relative z-10">
         {/* Header */}
         <div className="text-center mb-12 slide-up ">
           <div className="flex justify-end mb-6">
             <LanguageSwitcher />
           </div>
-          
+
           <div className="inline-flex items-center gap-3 mb-6 px-6 py-3 bg-card/90 backdrop-blur-sm rounded-full border border-border shadow-soft">
             <Utensils className="w-6 h-6 text-primary" />
             <span className="text-base font-semibold text-foreground ">{t('app.title')}</span>
           </div>
-          
+
           <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 tracking-tight">
             {t('app.subtitle')}
           </h1>
-          
+
           <p className="text-xl text-foreground/70 max-w-2xl mx-auto leading-relaxed">
             {t('app.description')}
           </p>
@@ -113,16 +138,16 @@ export const MultiStepForm = ({ onSubmit }) => {
               const StepIcon = step.icon;
               const isCompleted = currentStep > step.id;
               const isCurrent = currentStep === step.id;
-              
+
               return (
                 <div key={step.id} className="flex items-center flex-1 last:flex-none">
                   <div className="flex flex-col items-center gap-2">
-                    <div 
+                    <div
                       className={`
                         w-12 h-12 rounded-full flex items-center justify-center transition-smooth
-                        ${isCompleted ? 'bg-primary text-white shadow-glow' : 
-                          isCurrent ? 'bg-primary text-white shadow-glow scale-110' : 
-                          'bg-muted text-muted-foreground'}
+                        ${isCompleted ? 'bg-primary text-white shadow-glow' :
+                          isCurrent ? 'bg-primary text-white shadow-glow scale-110' :
+                            'bg-muted text-muted-foreground'}
                       `}
                     >
                       {isCompleted ? <Check className="w-6 h-6" /> : <StepIcon className="w-6 h-6" />}
@@ -132,9 +157,8 @@ export const MultiStepForm = ({ onSubmit }) => {
                     </span>
                   </div>
                   {index < STEPS.length - 1 && (
-                    <div className={`h-1 flex-1 mx-2 rounded-full transition-smooth ${
-                      currentStep > step.id ? 'bg-primary' : 'bg-muted'
-                    }`} />
+                    <div className={`h-1 flex-1 mx-2 rounded-full transition-smooth ${currentStep > step.id ? 'bg-primary' : 'bg-muted'
+                      }`} />
                   )}
                 </div>
               );
@@ -154,7 +178,7 @@ export const MultiStepForm = ({ onSubmit }) => {
                     <h2 className="text-3xl font-bold mb-2">{t('form.personalInfo')}</h2>
                     <p className="text-muted-foreground">{t('form.personalInfoDesc')}</p>
                   </div>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <Label htmlFor="age" className="text-base">{t('form.age')}</Label>
@@ -169,10 +193,10 @@ export const MultiStepForm = ({ onSubmit }) => {
                         required
                       />
                     </div>
-                    
+
                     <div className="space-y-2">
                       <Label htmlFor="gender" className="text-base">{t('form.gender')}</Label>
-                      <Select  value={formData.gender} onValueChange={(value) => setFormData({ ...formData, gender: value })}>
+                      <Select value={formData.gender} onValueChange={(value) => setFormData({ ...formData, gender: value })}>
                         <SelectTrigger className="h-12 text-base transition-smooth focus:shadow-md bg-cyan-50">
                           <SelectValue placeholder={t('form.selectGender')} />
                         </SelectTrigger>
@@ -183,7 +207,7 @@ export const MultiStepForm = ({ onSubmit }) => {
                         </SelectContent>
                       </Select>
                     </div>
-                    
+
                     <div className="space-y-2">
                       <Label htmlFor="height" className="text-base">{t('form.height')}</Label>
                       <Input
@@ -197,7 +221,7 @@ export const MultiStepForm = ({ onSubmit }) => {
                         required
                       />
                     </div>
-                    
+
                     <div className="space-y-2">
                       <Label htmlFor="weight" className="text-base">{t('form.weight')}</Label>
                       <Input
@@ -211,7 +235,7 @@ export const MultiStepForm = ({ onSubmit }) => {
                         required
                       />
                     </div>
-                    
+
                     <div className="space-y-2 md:col-span-2">
                       <Label htmlFor="bloodGroup" className="text-base">{t('form.bloodGroup')}</Label>
                       <Select value={formData.bloodGroup} onValueChange={(value) => setFormData({ ...formData, bloodGroup: value })}>
@@ -241,7 +265,7 @@ export const MultiStepForm = ({ onSubmit }) => {
                     <h2 className="text-3xl font-bold mb-2">{t('form.activityGoals')}</h2>
                     <p className="text-muted-foreground">{t('form.activityGoalsDesc')}</p>
                   </div>
-                  
+
                   <div className="space-y-8">
                     <div>
                       <Label className="text-lg font-semibold mb-4 block">{t('form.activityLevel')}</Label>
@@ -269,7 +293,7 @@ export const MultiStepForm = ({ onSubmit }) => {
                         <SelectTrigger className="bg-cyan-50 h-14 text-base transition-smooth focus:shadow-md">
                           <SelectValue placeholder={t('form.selectGoal')} />
                         </SelectTrigger>
-                        <SelectContent className="bg-cyan-50"> 
+                        <SelectContent className="bg-cyan-50">
                           <SelectItem value="weight_loss" className="text-base py-3">{t('form.weightLoss')}</SelectItem>
                           <SelectItem value="weight_gain" className="text-base py-3">{t('form.weightGain')}</SelectItem>
                           <SelectItem value="maintain" className="text-base py-3">{t('form.maintainWeight')}</SelectItem>
@@ -288,7 +312,7 @@ export const MultiStepForm = ({ onSubmit }) => {
                     <h2 className="text-3xl font-bold mb-2">{t('form.locationPreferences')}</h2>
                     <p className="text-muted-foreground">{t('form.locationPreferencesDesc')}</p>
                   </div>
-                  
+
                   <div className="space-y-8">
                     <div>
                       <Label htmlFor="location" className="text-lg font-semibold mb-4 block">{t('form.location')}</Label>
@@ -353,7 +377,7 @@ export const MultiStepForm = ({ onSubmit }) => {
                     <h2 className="text-3xl font-bold mb-2">{t('form.healthConditions')}</h2>
                     <p className="text-muted-foreground">{t('form.healthConditionsDesc')}</p>
                   </div>
-                  
+
                   <div className="space-y-8">
                     <div>
                       <Label className="text-lg font-semibold mb-4 block">{t('form.existingConditions')}</Label>
@@ -407,11 +431,11 @@ export const MultiStepForm = ({ onSubmit }) => {
                 <ChevronLeft className="w-5 h-5 mr-2" />
                 Back
               </Button>
-              
+
               <div className="text-sm text-muted-foreground">
                 Step {currentStep} of {STEPS.length}
               </div>
-              
+
               <Button
                 type="button"
                 onClick={handleNext}
