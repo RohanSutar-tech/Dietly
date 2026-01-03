@@ -37,8 +37,10 @@ const parseDislikedFoods = (dislikedFoodsInput) => {
 const filterByRegion = (foods, location) => {
   const normalizedLocation = location?.toLowerCase();
   
-  // Only filter if the location is one of our supported regions
-  if (normalizedLocation === 'maharashtra' || normalizedLocation === 'kerala') {
+  // Supported regions for filtering
+  const supportedRegions = ['maharashtra', 'kerala', 'punjab', 'karnataka'];
+  
+  if (supportedRegions.includes(normalizedLocation)) {
     return foods.filter(food => food.region === normalizedLocation);
   }
   
@@ -289,7 +291,8 @@ export const getRecommendationSummary = (userData) => {
   const rules = [];
 
   // Region rule
-  if (location === 'maharashtra' || location === 'kerala') {
+  const supportedRegions = ['maharashtra', 'kerala', 'punjab', 'karnataka'];
+  if (supportedRegions.includes(location?.toLowerCase())) {
     rules.push(`Showing ${location.charAt(0).toUpperCase() + location.slice(1)} regional foods`);
   }
 
