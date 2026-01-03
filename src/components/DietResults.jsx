@@ -11,6 +11,7 @@ import { NutritionGoalsComponent } from './NutritionGoals';
 import { CalorieEstimator } from './CalorieEstimator';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { getRecommendedFoods, getRecommendationSummary } from '@/utils/foodRecommendationEngine';
+import { generateDietPDF } from '@/utils/pdfGenerator';
 import { toast } from 'sonner';
 import indianDietBg from '@/assets/bg-7.jpg';
 
@@ -88,6 +89,23 @@ export const DietResults = ({ userData, onBack }) => {
     }
     
     toast.success("Your personalized meal plan has been saved");
+  };
+
+  const handleDownloadPDF = () => {
+    try {
+      generateDietPDF(
+        userData,
+        selectedFoods,
+        nutritionGoals,
+        bmi,
+        bmiStatus,
+        recommendationRules
+      );
+      toast.success("PDF downloaded successfully!");
+    } catch (error) {
+      console.error('PDF generation error:', error);
+      toast.error("Failed to generate PDF. Please try again.");
+    }
   };
 
   const selectedFoodIds = selectedFoods.map(food => food.id);
@@ -268,6 +286,7 @@ export const DietResults = ({ userData, onBack }) => {
             {t('results.savePlan')}
           </Button>
           <Button
+            onClick={handleDownloadPDF}
             size="lg"
             variant="secondary"
             className="px-8"
