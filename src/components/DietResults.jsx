@@ -3,14 +3,14 @@ import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Target, Download, Scale, Save } from 'lucide-react';
+import { Target, Download, Scale, Save, Info } from 'lucide-react';
 import { FoodSelector } from './FoodSelector';
 import { SelectedMealPlan } from './SelectedMealPlan';
 import { NutritionTracker } from './NutritionTracker';
 import { NutritionGoalsComponent } from './NutritionGoals';
 import { CalorieEstimator } from './CalorieEstimator';
 import { LanguageSwitcher } from './LanguageSwitcher';
-import { indianFoods } from '@/data/indianFoods';
+import { getRecommendedFoods, getRecommendationSummary } from '@/utils/foodRecommendationEngine';
 import { toast } from 'sonner';
 import indianDietBg from '@/assets/bg-7.jpg';
 
@@ -51,30 +51,25 @@ export const DietResults = ({ userData, onBack }) => {
     fat: Math.round((dailyCalories * 0.30) / 9), // 30% of calories from fat
   });
 
-  // Filter foods based on user preferences
-  const availableFoods = useMemo(() => {
-    // Parse disliked foods
-    const dislikedFoodsList = userData.dislikedFoods 
-      ? userData.dislikedFoods.toLowerCase().split(',').map(f => f.trim()).filter(f => f)
-      : [];
-    
-    return indianFoods.filter(food => {
-      // Filter out disliked foods
-      if (dislikedFoodsList.length > 0) {
-        const foodNameLower = food.name.toLowerCase();
-        const isDisliked = dislikedFoodsList.some(disliked => 
-          foodNameLower.includes(disliked) || disliked.includes(foodNameLower)
-        );
-        if (isDisliked) return false;
-      }
-      
-      // Filter by region if specific regional foods are available
-      if (food.region && food.region !== userData.location) {
-        return Math.random() > 0.7; // Show some non-regional foods too
-      }
-      return true;
-    });
-  }, [userData.location, userData.dislikedFoods]);
+  // Get recommended foods using rule-based engine
+  const recommendedFoods = useMemo(() => {
+    return getRecommendedFoods(userData);
+  }, [userData]);
+
+  // Get recommendation summary for display
+  const recommendationRules = useMemo(() => {
+    return getRecommendationSummary(userData);
+  }, [userData]);
+
+  // Flatten all recommended foods for nutrition tracking
+  const allRecommendedFoods = useMemo(() => {
+    return [
+      ...recommendedFoods.breakfast,
+      ...recommendedFoods.lunch,
+      ...recommendedFoods.snacks,
+      ...recommendedFoods.dinner
+    ];
+  }, [recommendedFoods]);
 
   const handleAddFood = (food) => {
     setSelectedFoods(prev => [...prev, food]);
@@ -194,29 +189,51 @@ export const DietResults = ({ userData, onBack }) => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Food Selection */}
           <div className="lg:col-span-2 space-y-6">
-            <h2 className="text-2xl font-bold mb-4">Choose Your Foods</h2>
+            <div className="flex flex-col gap-4">
+              <h2 className="text-2xl font-bold">Choose Your Foods</h2>
+              
+              {/* Recommendation Rules Summary */}
+              {recommendationRules.length > 0 && (
+                <Card className="bg-primary/5 border-primary/20">
+                  <CardContent className="py-3 px-4">
+                    <div className="flex items-start gap-2">
+                      <Info className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                      <div className="space-y-1">
+                        <p className="text-sm font-medium text-primary">Smart Filtering Applied:</p>
+                        <ul className="text-xs text-muted-foreground space-y-0.5">
+                          {recommendationRules.map((rule, index) => (
+                            <li key={index}>• {rule}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+            </div>
+            
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <FoodSelector
                 mealType="breakfast"
-                foods={availableFoods}
+                foods={recommendedFoods.breakfast}
                 onAddFood={handleAddFood}
                 selectedFoodIds={selectedFoodIds}
               />
               <FoodSelector
                 mealType="lunch"
-                foods={availableFoods}
+                foods={recommendedFoods.lunch}
                 onAddFood={handleAddFood}
                 selectedFoodIds={selectedFoodIds}
               />
               <FoodSelector
                 mealType="snacks"
-                foods={availableFoods}
+                foods={recommendedFoods.snacks}
                 onAddFood={handleAddFood}
                 selectedFoodIds={selectedFoodIds}
               />
               <FoodSelector
                 mealType="dinner"
-                foods={availableFoods}
+                foods={recommendedFoods.dinner}
                 onAddFood={handleAddFood}
                 selectedFoodIds={selectedFoodIds}
               />

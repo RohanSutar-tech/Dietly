@@ -5,17 +5,29 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Plus } from 'lucide-react';
 
 export const FoodSelector = ({ mealType, foods, onAddFood, selectedFoodIds }) => {
-  const mealFoods = foods.filter(food => food.category === mealType);
+  // Foods are already filtered by the recommendation engine
+  const mealFoods = foods;
 
   return (
     <Card className="glass border-0 shadow-lg bg-lime-100">
       <CardHeader>
-        <CardTitle className="capitalize">{mealType} Options</CardTitle>
+        <CardTitle className="capitalize flex items-center justify-between">
+          <span>{mealType} Options</span>
+          <span className="text-sm font-normal text-muted-foreground">
+            {mealFoods.length} items
+          </span>
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <ScrollArea className="h-[400px]">
-          <div className="space-y-3">
-            {mealFoods.map((food) => {
+          {mealFoods.length === 0 ? (
+            <div className="text-center py-8 text-muted-foreground">
+              <p>No foods available for this category</p>
+              <p className="text-xs mt-1">Try adjusting your preferences</p>
+            </div>
+          ) : (
+            <div className="space-y-3">
+              {mealFoods.map((food) => {
               const isSelected = selectedFoodIds.includes(food.id);
               return (
                 <div
@@ -50,6 +62,7 @@ export const FoodSelector = ({ mealType, foods, onAddFood, selectedFoodIds }) =>
               );
             })}
           </div>
+          )}
         </ScrollArea>
       </CardContent>
     </Card>
