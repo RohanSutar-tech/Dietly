@@ -1,43 +1,172 @@
-// Food items for Indian diet recommendation
+// Food items for Indian diet recommendation - Maharashtra & Kerala
+// Each food has health-related flags for rule-based filtering
 
 export const indianFoods = [
-  // Breakfast Foods
-  { id: 'bf1', name: 'Poha (1 bowl)', calories: 250, protein: 6, carbs: 45, fat: 8, category: 'breakfast', region: 'maharashtra' },
-  { id: 'bf2', name: 'Upma (1 bowl)', calories: 200, protein: 5, carbs: 35, fat: 6, category: 'breakfast' },
-  { id: 'bf3', name: 'Idli (2 pieces)', calories: 120, protein: 4, carbs: 24, fat: 1, category: 'breakfast', region: 'karnataka' },
-  { id: 'bf4', name: 'Dosa (1 medium)', calories: 180, protein: 6, carbs: 30, fat: 4, category: 'breakfast', region: 'tamil_nadu' },
-  { id: 'bf5', name: 'Paratha (1 piece)', calories: 300, protein: 8, carbs: 35, fat: 12, category: 'breakfast' },
-  { id: 'bf6', name: 'Oats Daliya (1 bowl)', calories: 150, protein: 5, carbs: 28, fat: 3, category: 'breakfast' },
-  { id: 'bf7', name: 'Stuffed Chapati', calories: 220, protein: 7, carbs: 32, fat: 8, category: 'breakfast' },
-  { id: 'bf8', name: 'Misal Pav', calories: 350, protein: 12, carbs: 45, fat: 15, category: 'breakfast', region: 'maharashtra' },
+  // ========== MAHARASHTRA FOODS ==========
+  
+  // Maharashtra Breakfast
+  { id: 'mh_bf1', name: 'Poha (1 bowl)', calories: 250, protein: 6, carbs: 45, fat: 8, category: 'breakfast', region: 'maharashtra', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
+  { id: 'mh_bf2', name: 'Misal Pav', calories: 350, protein: 12, carbs: 45, fat: 15, category: 'breakfast', region: 'maharashtra', isVeg: true, isHighSugar: false, isHighSodium: true, isHighFat: false, isHighProtein: true, isProcessed: false, isHighFiber: true },
+  { id: 'mh_bf3', name: 'Sabudana Khichdi', calories: 280, protein: 4, carbs: 50, fat: 10, category: 'breakfast', region: 'maharashtra', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: false },
+  { id: 'mh_bf4', name: 'Thalipeeth (2 pieces)', calories: 300, protein: 10, carbs: 40, fat: 12, category: 'breakfast', region: 'maharashtra', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: true, isProcessed: false, isHighFiber: true },
+  { id: 'mh_bf5', name: 'Kanda Poha', calories: 260, protein: 6, carbs: 48, fat: 8, category: 'breakfast', region: 'maharashtra', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
+  { id: 'mh_bf6', name: 'Upma (1 bowl)', calories: 200, protein: 5, carbs: 35, fat: 6, category: 'breakfast', region: 'maharashtra', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
+  { id: 'mh_bf7', name: 'Sheera (1 bowl)', calories: 320, protein: 5, carbs: 55, fat: 12, category: 'breakfast', region: 'maharashtra', isVeg: true, isHighSugar: true, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: false },
+  { id: 'mh_bf8', name: 'Pithla Bhakri', calories: 280, protein: 12, carbs: 38, fat: 10, category: 'breakfast', region: 'maharashtra', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: true, isProcessed: false, isHighFiber: true },
 
-  // Lunch Foods
-  { id: 'l1', name: 'Dal Rice (1 plate)', calories: 320, protein: 12, carbs: 55, fat: 6, category: 'lunch' },
-  { id: 'l2', name: 'Rajma Chawal', calories: 380, protein: 15, carbs: 60, fat: 8, category: 'lunch' },
-  { id: 'l3', name: 'Sambar Rice', calories: 300, protein: 10, carbs: 50, fat: 8, category: 'lunch', region: 'karnataka' },
-  { id: 'l4', name: 'Curd Rice', calories: 250, protein: 8, carbs: 40, fat: 6, category: 'lunch', region: 'tamil_nadu' },
-  { id: 'l5', name: 'Chicken Curry + Rice', calories: 450, protein: 25, carbs: 45, fat: 18, category: 'lunch' },
-  { id: 'l6', name: 'Paneer Curry + Chapati', calories: 400, protein: 18, carbs: 35, fat: 20, category: 'lunch' },
-  { id: 'l7', name: 'Bhindi Sabji + Rice', calories: 280, protein: 8, carbs: 45, fat: 10, category: 'lunch' },
-  { id: 'l8', name: 'Fish Curry + Rice', calories: 350, protein: 22, carbs: 40, fat: 12, category: 'lunch' },
+  // Maharashtra Lunch
+  { id: 'mh_l1', name: 'Varan Bhaat', calories: 320, protein: 12, carbs: 55, fat: 6, category: 'lunch', region: 'maharashtra', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: true, isProcessed: false, isHighFiber: true },
+  { id: 'mh_l2', name: 'Bharli Vangi + Chapati', calories: 350, protein: 8, carbs: 45, fat: 16, category: 'lunch', region: 'maharashtra', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
+  { id: 'mh_l3', name: 'Zunka Bhakri', calories: 300, protein: 14, carbs: 40, fat: 10, category: 'lunch', region: 'maharashtra', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: true, isProcessed: false, isHighFiber: true },
+  { id: 'mh_l4', name: 'Usal Pav', calories: 380, protein: 15, carbs: 50, fat: 12, category: 'lunch', region: 'maharashtra', isVeg: true, isHighSugar: false, isHighSodium: true, isHighFat: false, isHighProtein: true, isProcessed: false, isHighFiber: true },
+  { id: 'mh_l5', name: 'Matki Usal + Rice', calories: 340, protein: 14, carbs: 52, fat: 8, category: 'lunch', region: 'maharashtra', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: true, isProcessed: false, isHighFiber: true },
+  { id: 'mh_l6', name: 'Kolhapuri Chicken + Rice', calories: 480, protein: 28, carbs: 45, fat: 20, category: 'lunch', region: 'maharashtra', isVeg: false, isHighSugar: false, isHighSodium: true, isHighFat: true, isHighProtein: true, isProcessed: false, isHighFiber: false },
+  { id: 'mh_l7', name: 'Kombdi Vade', calories: 450, protein: 25, carbs: 40, fat: 22, category: 'lunch', region: 'maharashtra', isVeg: false, isHighSugar: false, isHighSodium: false, isHighFat: true, isHighProtein: true, isProcessed: false, isHighFiber: false },
+  { id: 'mh_l8', name: 'Masale Bhaat', calories: 350, protein: 8, carbs: 58, fat: 10, category: 'lunch', region: 'maharashtra', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
 
-  // Snacks
-  { id: 's1', name: 'Bhel Puri', calories: 200, protein: 6, carbs: 35, fat: 5, category: 'snacks', region: 'maharashtra' },
-  { id: 's2', name: 'Roasted Chana (1 cup)', calories: 180, protein: 12, carbs: 25, fat: 4, category: 'snacks' },
-  { id: 's3', name: 'Sprouts Salad', calories: 120, protein: 8, carbs: 18, fat: 2, category: 'snacks' },
-  { id: 's4', name: 'Banana (1 medium)', calories: 105, protein: 1, carbs: 27, fat: 0, category: 'snacks' },
-  { id: 's5', name: 'Masala Chai + Biscuits', calories: 150, protein: 3, carbs: 25, fat: 5, category: 'snacks' },
-  { id: 's6', name: 'Dhokla (2 pieces)', calories: 160, protein: 6, carbs: 28, fat: 3, category: 'snacks' },
-  { id: 's7', name: 'Roasted Groundnuts', calories: 220, protein: 10, carbs: 8, fat: 18, category: 'snacks' },
-  { id: 's8', name: 'Mixed Fruit Chaat', calories: 140, protein: 2, carbs: 35, fat: 1, category: 'snacks' },
+  // Maharashtra Snacks
+  { id: 'mh_s1', name: 'Bhel Puri', calories: 200, protein: 6, carbs: 35, fat: 5, category: 'snacks', region: 'maharashtra', isVeg: true, isHighSugar: false, isHighSodium: true, isHighFat: false, isHighProtein: false, isProcessed: true, isHighFiber: true },
+  { id: 'mh_s2', name: 'Vada Pav', calories: 290, protein: 6, carbs: 40, fat: 12, category: 'snacks', region: 'maharashtra', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: true, isHighProtein: false, isProcessed: false, isHighFiber: false },
+  { id: 'mh_s3', name: 'Pani Puri (6 pieces)', calories: 180, protein: 4, carbs: 32, fat: 5, category: 'snacks', region: 'maharashtra', isVeg: true, isHighSugar: false, isHighSodium: true, isHighFat: false, isHighProtein: false, isProcessed: true, isHighFiber: false },
+  { id: 'mh_s4', name: 'Kothimbir Vadi (4 pieces)', calories: 160, protein: 5, carbs: 22, fat: 6, category: 'snacks', region: 'maharashtra', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
+  { id: 'mh_s5', name: 'Batata Vada (2 pieces)', calories: 240, protein: 5, carbs: 30, fat: 12, category: 'snacks', region: 'maharashtra', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: true, isHighProtein: false, isProcessed: false, isHighFiber: false },
+  { id: 'mh_s6', name: 'Sabudana Vada (2 pieces)', calories: 220, protein: 3, carbs: 35, fat: 8, category: 'snacks', region: 'maharashtra', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: false },
+  { id: 'mh_s7', name: 'Chivda (1 cup)', calories: 180, protein: 4, carbs: 28, fat: 7, category: 'snacks', region: 'maharashtra', isVeg: true, isHighSugar: false, isHighSodium: true, isHighFat: false, isHighProtein: false, isProcessed: true, isHighFiber: false },
+  { id: 'mh_s8', name: 'Dabeli', calories: 250, protein: 5, carbs: 38, fat: 9, category: 'snacks', region: 'maharashtra', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: false },
 
-  // Dinner Foods
-  { id: 'd1', name: 'Chapati + Dal (2+1 bowl)', calories: 280, protein: 12, carbs: 45, fat: 6, category: 'dinner' },
-  { id: 'd2', name: 'Khichdi (1 bowl)', calories: 200, protein: 8, carbs: 35, fat: 4, category: 'dinner' },
-  { id: 'd3', name: 'Vegetable Curry + Rice', calories: 250, protein: 6, carbs: 40, fat: 8, category: 'dinner' },
-  { id: 'd4', name: 'Palak Paneer + Chapati', calories: 320, protein: 15, carbs: 25, fat: 18, category: 'dinner' },
-  { id: 'd5', name: 'Chicken Soup + Bread', calories: 200, protein: 15, carbs: 20, fat: 6, category: 'dinner' },
-  { id: 'd6', name: 'Moong Dal + Rice', calories: 260, protein: 12, carbs: 42, fat: 5, category: 'dinner' },
-  { id: 'd7', name: 'Aloo Gobi + Chapati', calories: 240, protein: 8, carbs: 38, fat: 8, category: 'dinner' },
-  { id: 'd8', name: 'Rasam + Rice', calories: 180, protein: 4, carbs: 35, fat: 3, category: 'dinner', region: 'tamil_nadu' }
+  // Maharashtra Dinner
+  { id: 'mh_d1', name: 'Chapati + Amti (2+1 bowl)', calories: 280, protein: 12, carbs: 45, fat: 6, category: 'dinner', region: 'maharashtra', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: true, isProcessed: false, isHighFiber: true },
+  { id: 'mh_d2', name: 'Bhakri + Pitla', calories: 260, protein: 12, carbs: 38, fat: 8, category: 'dinner', region: 'maharashtra', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: true, isProcessed: false, isHighFiber: true },
+  { id: 'mh_d3', name: 'Puran Poli + Milk', calories: 350, protein: 10, carbs: 60, fat: 8, category: 'dinner', region: 'maharashtra', isVeg: true, isHighSugar: true, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: false },
+  { id: 'mh_d4', name: 'Vangi Bhaat', calories: 300, protein: 7, carbs: 52, fat: 8, category: 'dinner', region: 'maharashtra', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
+  { id: 'mh_d5', name: 'Khichdi + Kadhi', calories: 280, protein: 10, carbs: 42, fat: 8, category: 'dinner', region: 'maharashtra', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
+  { id: 'mh_d6', name: 'Sukhi Bhaji + Chapati', calories: 240, protein: 8, carbs: 38, fat: 7, category: 'dinner', region: 'maharashtra', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
+  { id: 'mh_d7', name: 'Sol Kadhi + Rice', calories: 220, protein: 5, carbs: 40, fat: 5, category: 'dinner', region: 'maharashtra', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: false },
+  { id: 'mh_d8', name: 'Tambda Rassa + Bhakri', calories: 400, protein: 22, carbs: 35, fat: 18, category: 'dinner', region: 'maharashtra', isVeg: false, isHighSugar: false, isHighSodium: true, isHighFat: true, isHighProtein: true, isProcessed: false, isHighFiber: false },
+
+  // ========== KERALA FOODS ==========
+  
+  // Kerala Breakfast
+  { id: 'kl_bf1', name: 'Appam + Stew', calories: 280, protein: 8, carbs: 45, fat: 8, category: 'breakfast', region: 'kerala', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: false },
+  { id: 'kl_bf2', name: 'Puttu + Kadala Curry', calories: 320, protein: 12, carbs: 52, fat: 8, category: 'breakfast', region: 'kerala', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: true, isProcessed: false, isHighFiber: true },
+  { id: 'kl_bf3', name: 'Idiyappam (3 pieces)', calories: 180, protein: 4, carbs: 38, fat: 2, category: 'breakfast', region: 'kerala', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: false },
+  { id: 'kl_bf4', name: 'Dosa + Sambar', calories: 250, protein: 8, carbs: 42, fat: 6, category: 'breakfast', region: 'kerala', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
+  { id: 'kl_bf5', name: 'Parotta + Egg Curry', calories: 420, protein: 15, carbs: 50, fat: 18, category: 'breakfast', region: 'kerala', isVeg: false, isHighSugar: false, isHighSodium: false, isHighFat: true, isHighProtein: true, isProcessed: false, isHighFiber: false },
+  { id: 'kl_bf6', name: 'Uppuma (1 bowl)', calories: 200, protein: 5, carbs: 35, fat: 6, category: 'breakfast', region: 'kerala', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
+  { id: 'kl_bf7', name: 'Pathiri + Chicken Curry', calories: 380, protein: 20, carbs: 40, fat: 15, category: 'breakfast', region: 'kerala', isVeg: false, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: true, isProcessed: false, isHighFiber: false },
+  { id: 'kl_bf8', name: 'Vellayappam + Egg Roast', calories: 350, protein: 14, carbs: 42, fat: 14, category: 'breakfast', region: 'kerala', isVeg: false, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: true, isProcessed: false, isHighFiber: false },
+
+  // Kerala Lunch
+  { id: 'kl_l1', name: 'Meen Curry + Rice', calories: 380, protein: 22, carbs: 45, fat: 12, category: 'lunch', region: 'kerala', isVeg: false, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: true, isProcessed: false, isHighFiber: false },
+  { id: 'kl_l2', name: 'Sadya Meals (1 plate)', calories: 600, protein: 15, carbs: 90, fat: 18, category: 'lunch', region: 'kerala', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
+  { id: 'kl_l3', name: 'Kerala Chicken Curry + Rice', calories: 450, protein: 25, carbs: 48, fat: 18, category: 'lunch', region: 'kerala', isVeg: false, isHighSugar: false, isHighSodium: false, isHighFat: true, isHighProtein: true, isProcessed: false, isHighFiber: false },
+  { id: 'kl_l4', name: 'Avial + Rice', calories: 300, protein: 8, carbs: 48, fat: 10, category: 'lunch', region: 'kerala', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
+  { id: 'kl_l5', name: 'Sambar + Rice + Thoran', calories: 350, protein: 12, carbs: 55, fat: 10, category: 'lunch', region: 'kerala', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: true, isProcessed: false, isHighFiber: true },
+  { id: 'kl_l6', name: 'Karimeen Pollichathu + Rice', calories: 420, protein: 28, carbs: 42, fat: 16, category: 'lunch', region: 'kerala', isVeg: false, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: true, isProcessed: false, isHighFiber: false },
+  { id: 'kl_l7', name: 'Beef Fry + Malabar Parotta', calories: 520, protein: 28, carbs: 45, fat: 26, category: 'lunch', region: 'kerala', isVeg: false, isHighSugar: false, isHighSodium: true, isHighFat: true, isHighProtein: true, isProcessed: false, isHighFiber: false },
+  { id: 'kl_l8', name: 'Prawn Masala + Rice', calories: 400, protein: 24, carbs: 45, fat: 14, category: 'lunch', region: 'kerala', isVeg: false, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: true, isProcessed: false, isHighFiber: false },
+
+  // Kerala Snacks
+  { id: 'kl_s1', name: 'Banana Chips (1 cup)', calories: 200, protein: 2, carbs: 28, fat: 10, category: 'snacks', region: 'kerala', isVeg: true, isHighSugar: false, isHighSodium: true, isHighFat: true, isHighProtein: false, isProcessed: true, isHighFiber: false },
+  { id: 'kl_s2', name: 'Pazham Pori (2 pieces)', calories: 280, protein: 3, carbs: 45, fat: 10, category: 'snacks', region: 'kerala', isVeg: true, isHighSugar: true, isHighSodium: false, isHighFat: true, isHighProtein: false, isProcessed: false, isHighFiber: false },
+  { id: 'kl_s3', name: 'Unniyappam (4 pieces)', calories: 240, protein: 4, carbs: 40, fat: 8, category: 'snacks', region: 'kerala', isVeg: true, isHighSugar: true, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: false },
+  { id: 'kl_s4', name: 'Parippu Vada (3 pieces)', calories: 220, protein: 10, carbs: 25, fat: 10, category: 'snacks', region: 'kerala', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: true, isHighProtein: true, isProcessed: false, isHighFiber: true },
+  { id: 'kl_s5', name: 'Sukhiyan (2 pieces)', calories: 260, protein: 6, carbs: 42, fat: 8, category: 'snacks', region: 'kerala', isVeg: true, isHighSugar: true, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: false },
+  { id: 'kl_s6', name: 'Kozhukatta (3 pieces)', calories: 180, protein: 3, carbs: 35, fat: 4, category: 'snacks', region: 'kerala', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: false },
+  { id: 'kl_s7', name: 'Achappam (4 pieces)', calories: 200, protein: 3, carbs: 30, fat: 8, category: 'snacks', region: 'kerala', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: false },
+  { id: 'kl_s8', name: 'Ela Ada (2 pieces)', calories: 220, protein: 4, carbs: 38, fat: 6, category: 'snacks', region: 'kerala', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: false },
+
+  // Kerala Dinner
+  { id: 'kl_d1', name: 'Appam + Vegetable Stew', calories: 260, protein: 6, carbs: 42, fat: 8, category: 'dinner', region: 'kerala', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
+  { id: 'kl_d2', name: 'Chapati + Kadala Curry', calories: 300, protein: 14, carbs: 45, fat: 8, category: 'dinner', region: 'kerala', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: true, isProcessed: false, isHighFiber: true },
+  { id: 'kl_d3', name: 'Idiyappam + Egg Curry', calories: 280, protein: 12, carbs: 40, fat: 8, category: 'dinner', region: 'kerala', isVeg: false, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: true, isProcessed: false, isHighFiber: false },
+  { id: 'kl_d4', name: 'Puttu + Papad + Banana', calories: 280, protein: 6, carbs: 55, fat: 5, category: 'dinner', region: 'kerala', isVeg: true, isHighSugar: true, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: false },
+  { id: 'kl_d5', name: 'Kerala Porotta + Beef Curry', calories: 480, protein: 25, carbs: 48, fat: 22, category: 'dinner', region: 'kerala', isVeg: false, isHighSugar: false, isHighSodium: true, isHighFat: true, isHighProtein: true, isProcessed: false, isHighFiber: false },
+  { id: 'kl_d6', name: 'Meen Molee + Appam', calories: 350, protein: 20, carbs: 38, fat: 14, category: 'dinner', region: 'kerala', isVeg: false, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: true, isProcessed: false, isHighFiber: false },
+  { id: 'kl_d7', name: 'Olan + Rice', calories: 250, protein: 6, carbs: 42, fat: 7, category: 'dinner', region: 'kerala', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
+  { id: 'kl_d8', name: 'Erissery + Rice', calories: 320, protein: 10, carbs: 50, fat: 10, category: 'dinner', region: 'kerala', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
+
+  // ========== PUNJAB FOODS ==========
+  
+  // Punjab Breakfast
+  { id: 'pb_bf1', name: 'Aloo Paratha + Curd', calories: 380, protein: 10, carbs: 52, fat: 16, category: 'breakfast', region: 'punjab', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: true, isHighProtein: false, isProcessed: false, isHighFiber: true },
+  { id: 'pb_bf2', name: 'Chole Bhature', calories: 550, protein: 18, carbs: 65, fat: 25, category: 'breakfast', region: 'punjab', isVeg: true, isHighSugar: false, isHighSodium: true, isHighFat: true, isHighProtein: true, isProcessed: false, isHighFiber: true },
+  { id: 'pb_bf3', name: 'Makki di Roti + Sarson da Saag', calories: 350, protein: 10, carbs: 48, fat: 14, category: 'breakfast', region: 'punjab', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
+  { id: 'pb_bf4', name: 'Paneer Paratha + Butter', calories: 420, protein: 14, carbs: 45, fat: 22, category: 'breakfast', region: 'punjab', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: true, isHighProtein: true, isProcessed: false, isHighFiber: false },
+  { id: 'pb_bf5', name: 'Lassi + Paratha', calories: 400, protein: 12, carbs: 55, fat: 15, category: 'breakfast', region: 'punjab', isVeg: true, isHighSugar: true, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: false },
+  { id: 'pb_bf6', name: 'Gobhi Paratha + Pickle', calories: 340, protein: 8, carbs: 48, fat: 14, category: 'breakfast', region: 'punjab', isVeg: true, isHighSugar: false, isHighSodium: true, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
+  { id: 'pb_bf7', name: 'Keema Paratha', calories: 450, protein: 20, carbs: 45, fat: 22, category: 'breakfast', region: 'punjab', isVeg: false, isHighSugar: false, isHighSodium: false, isHighFat: true, isHighProtein: true, isProcessed: false, isHighFiber: false },
+  { id: 'pb_bf8', name: 'Amritsari Kulcha + Chole', calories: 480, protein: 16, carbs: 60, fat: 20, category: 'breakfast', region: 'punjab', isVeg: true, isHighSugar: false, isHighSodium: true, isHighFat: true, isHighProtein: true, isProcessed: false, isHighFiber: true },
+
+  // Punjab Lunch
+  { id: 'pb_l1', name: 'Rajma Chawal', calories: 380, protein: 15, carbs: 62, fat: 8, category: 'lunch', region: 'punjab', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: true, isProcessed: false, isHighFiber: true },
+  { id: 'pb_l2', name: 'Dal Makhani + Naan', calories: 450, protein: 16, carbs: 55, fat: 20, category: 'lunch', region: 'punjab', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: true, isHighProtein: true, isProcessed: false, isHighFiber: true },
+  { id: 'pb_l3', name: 'Butter Chicken + Rice', calories: 520, protein: 28, carbs: 50, fat: 24, category: 'lunch', region: 'punjab', isVeg: false, isHighSugar: false, isHighSodium: true, isHighFat: true, isHighProtein: true, isProcessed: false, isHighFiber: false },
+  { id: 'pb_l4', name: 'Kadhi Pakora + Rice', calories: 380, protein: 12, carbs: 55, fat: 14, category: 'lunch', region: 'punjab', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
+  { id: 'pb_l5', name: 'Paneer Tikka Masala + Roti', calories: 420, protein: 18, carbs: 40, fat: 22, category: 'lunch', region: 'punjab', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: true, isHighProtein: true, isProcessed: false, isHighFiber: false },
+  { id: 'pb_l6', name: 'Tandoori Chicken + Naan', calories: 480, protein: 35, carbs: 42, fat: 18, category: 'lunch', region: 'punjab', isVeg: false, isHighSugar: false, isHighSodium: true, isHighFat: false, isHighProtein: true, isProcessed: false, isHighFiber: false },
+  { id: 'pb_l7', name: 'Chole + Bhature', calories: 550, protein: 18, carbs: 68, fat: 24, category: 'lunch', region: 'punjab', isVeg: true, isHighSugar: false, isHighSodium: true, isHighFat: true, isHighProtein: true, isProcessed: false, isHighFiber: true },
+  { id: 'pb_l8', name: 'Amritsari Fish + Rice', calories: 450, protein: 26, carbs: 48, fat: 18, category: 'lunch', region: 'punjab', isVeg: false, isHighSugar: false, isHighSodium: false, isHighFat: true, isHighProtein: true, isProcessed: false, isHighFiber: false },
+
+  // Punjab Snacks
+  { id: 'pb_s1', name: 'Samosa (2 pieces)', calories: 280, protein: 6, carbs: 35, fat: 14, category: 'snacks', region: 'punjab', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: true, isHighProtein: false, isProcessed: false, isHighFiber: false },
+  { id: 'pb_s2', name: 'Pakora (1 plate)', calories: 250, protein: 5, carbs: 28, fat: 14, category: 'snacks', region: 'punjab', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: true, isHighProtein: false, isProcessed: false, isHighFiber: false },
+  { id: 'pb_s3', name: 'Golgappe (8 pieces)', calories: 180, protein: 4, carbs: 32, fat: 5, category: 'snacks', region: 'punjab', isVeg: true, isHighSugar: false, isHighSodium: true, isHighFat: false, isHighProtein: false, isProcessed: true, isHighFiber: false },
+  { id: 'pb_s4', name: 'Aloo Tikki (2 pieces)', calories: 220, protein: 5, carbs: 30, fat: 10, category: 'snacks', region: 'punjab', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: false },
+  { id: 'pb_s5', name: 'Pinni (2 pieces)', calories: 300, protein: 6, carbs: 42, fat: 14, category: 'snacks', region: 'punjab', isVeg: true, isHighSugar: true, isHighSodium: false, isHighFat: true, isHighProtein: false, isProcessed: false, isHighFiber: false },
+  { id: 'pb_s6', name: 'Paneer Pakora (4 pieces)', calories: 280, protein: 12, carbs: 20, fat: 18, category: 'snacks', region: 'punjab', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: true, isHighProtein: true, isProcessed: false, isHighFiber: false },
+  { id: 'pb_s7', name: 'Papdi Chaat', calories: 200, protein: 5, carbs: 30, fat: 8, category: 'snacks', region: 'punjab', isVeg: true, isHighSugar: false, isHighSodium: true, isHighFat: false, isHighProtein: false, isProcessed: true, isHighFiber: false },
+  { id: 'pb_s8', name: 'Chicken Tikka (6 pieces)', calories: 240, protein: 28, carbs: 5, fat: 12, category: 'snacks', region: 'punjab', isVeg: false, isHighSugar: false, isHighSodium: true, isHighFat: false, isHighProtein: true, isProcessed: false, isHighFiber: false },
+
+  // Punjab Dinner
+  { id: 'pb_d1', name: 'Roti + Dal Fry', calories: 280, protein: 12, carbs: 45, fat: 8, category: 'dinner', region: 'punjab', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: true, isProcessed: false, isHighFiber: true },
+  { id: 'pb_d2', name: 'Palak Paneer + Roti', calories: 350, protein: 16, carbs: 35, fat: 18, category: 'dinner', region: 'punjab', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: true, isProcessed: false, isHighFiber: true },
+  { id: 'pb_d3', name: 'Aloo Gobi + Chapati', calories: 280, protein: 8, carbs: 42, fat: 10, category: 'dinner', region: 'punjab', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
+  { id: 'pb_d4', name: 'Chicken Curry + Naan', calories: 450, protein: 28, carbs: 42, fat: 20, category: 'dinner', region: 'punjab', isVeg: false, isHighSugar: false, isHighSodium: true, isHighFat: true, isHighProtein: true, isProcessed: false, isHighFiber: false },
+  { id: 'pb_d5', name: 'Shahi Paneer + Rice', calories: 420, protein: 16, carbs: 52, fat: 18, category: 'dinner', region: 'punjab', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: true, isHighProtein: true, isProcessed: false, isHighFiber: false },
+  { id: 'pb_d6', name: 'Baingan Bharta + Roti', calories: 260, protein: 7, carbs: 38, fat: 10, category: 'dinner', region: 'punjab', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
+  { id: 'pb_d7', name: 'Mutton Rogan Josh + Rice', calories: 520, protein: 32, carbs: 48, fat: 24, category: 'dinner', region: 'punjab', isVeg: false, isHighSugar: false, isHighSodium: true, isHighFat: true, isHighProtein: true, isProcessed: false, isHighFiber: false },
+  { id: 'pb_d8', name: 'Mix Veg Curry + Roti', calories: 300, protein: 10, carbs: 42, fat: 12, category: 'dinner', region: 'punjab', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
+
+  // ========== KARNATAKA FOODS ==========
+  
+  // Karnataka Breakfast
+  { id: 'ka_bf1', name: 'Masala Dosa + Chutney', calories: 280, protein: 7, carbs: 45, fat: 10, category: 'breakfast', region: 'karnataka', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
+  { id: 'ka_bf2', name: 'Bisi Bele Bath', calories: 350, protein: 12, carbs: 55, fat: 10, category: 'breakfast', region: 'karnataka', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: true, isProcessed: false, isHighFiber: true },
+  { id: 'ka_bf3', name: 'Rava Idli + Sambar', calories: 240, protein: 8, carbs: 42, fat: 6, category: 'breakfast', region: 'karnataka', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
+  { id: 'ka_bf4', name: 'Set Dosa + Veg Sagu', calories: 300, protein: 8, carbs: 50, fat: 8, category: 'breakfast', region: 'karnataka', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
+  { id: 'ka_bf5', name: 'Akki Roti + Chutney', calories: 220, protein: 5, carbs: 40, fat: 6, category: 'breakfast', region: 'karnataka', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
+  { id: 'ka_bf6', name: 'Neer Dosa + Chicken Curry', calories: 380, protein: 22, carbs: 42, fat: 14, category: 'breakfast', region: 'karnataka', isVeg: false, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: true, isProcessed: false, isHighFiber: false },
+  { id: 'ka_bf7', name: 'Mangalore Buns + Chutney', calories: 320, protein: 6, carbs: 52, fat: 10, category: 'breakfast', region: 'karnataka', isVeg: true, isHighSugar: true, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: false },
+  { id: 'ka_bf8', name: 'Ragi Mudde + Sambar', calories: 280, protein: 8, carbs: 50, fat: 4, category: 'breakfast', region: 'karnataka', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
+
+  // Karnataka Lunch
+  { id: 'ka_l1', name: 'Vangi Bath + Curd', calories: 320, protein: 8, carbs: 55, fat: 10, category: 'lunch', region: 'karnataka', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
+  { id: 'ka_l2', name: 'Karnataka Meals (Thali)', calories: 550, protein: 16, carbs: 85, fat: 16, category: 'lunch', region: 'karnataka', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: true, isProcessed: false, isHighFiber: true },
+  { id: 'ka_l3', name: 'Puliyogare + Mosaru Bajji', calories: 340, protein: 7, carbs: 58, fat: 10, category: 'lunch', region: 'karnataka', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
+  { id: 'ka_l4', name: 'Mangalorean Fish Curry + Rice', calories: 420, protein: 26, carbs: 48, fat: 16, category: 'lunch', region: 'karnataka', isVeg: false, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: true, isProcessed: false, isHighFiber: false },
+  { id: 'ka_l5', name: 'Saaru + Rice + Palya', calories: 300, protein: 10, carbs: 52, fat: 6, category: 'lunch', region: 'karnataka', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
+  { id: 'ka_l6', name: 'Chicken Ghee Roast + Neer Dosa', calories: 480, protein: 30, carbs: 38, fat: 24, category: 'lunch', region: 'karnataka', isVeg: false, isHighSugar: false, isHighSodium: true, isHighFat: true, isHighProtein: true, isProcessed: false, isHighFiber: false },
+  { id: 'ka_l7', name: 'Huli + Rice + Kosambari', calories: 320, protein: 12, carbs: 55, fat: 6, category: 'lunch', region: 'karnataka', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: true, isProcessed: false, isHighFiber: true },
+  { id: 'ka_l8', name: 'Prawns Sukka + Rice', calories: 400, protein: 24, carbs: 48, fat: 14, category: 'lunch', region: 'karnataka', isVeg: false, isHighSugar: false, isHighSodium: true, isHighFat: false, isHighProtein: true, isProcessed: false, isHighFiber: false },
+
+  // Karnataka Snacks
+  { id: 'ka_s1', name: 'Mysore Pak (2 pieces)', calories: 280, protein: 4, carbs: 35, fat: 16, category: 'snacks', region: 'karnataka', isVeg: true, isHighSugar: true, isHighSodium: false, isHighFat: true, isHighProtein: false, isProcessed: false, isHighFiber: false },
+  { id: 'ka_s2', name: 'Benne Dosa', calories: 320, protein: 6, carbs: 45, fat: 14, category: 'snacks', region: 'karnataka', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: true, isHighProtein: false, isProcessed: false, isHighFiber: false },
+  { id: 'ka_s3', name: 'Goli Baje (5 pieces)', calories: 220, protein: 5, carbs: 30, fat: 10, category: 'snacks', region: 'karnataka', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: true, isHighProtein: false, isProcessed: false, isHighFiber: false },
+  { id: 'ka_s4', name: 'Khara Boondi (1 cup)', calories: 180, protein: 5, carbs: 25, fat: 8, category: 'snacks', region: 'karnataka', isVeg: true, isHighSugar: false, isHighSodium: true, isHighFat: false, isHighProtein: false, isProcessed: true, isHighFiber: false },
+  { id: 'ka_s5', name: 'Obbattu/Holige (2 pieces)', calories: 320, protein: 6, carbs: 55, fat: 10, category: 'snacks', region: 'karnataka', isVeg: true, isHighSugar: true, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: false },
+  { id: 'ka_s6', name: 'Churmuri (1 plate)', calories: 180, protein: 4, carbs: 30, fat: 6, category: 'snacks', region: 'karnataka', isVeg: true, isHighSugar: false, isHighSodium: true, isHighFat: false, isHighProtein: false, isProcessed: true, isHighFiber: true },
+  { id: 'ka_s7', name: 'Kesari Bath', calories: 260, protein: 4, carbs: 42, fat: 10, category: 'snacks', region: 'karnataka', isVeg: true, isHighSugar: true, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: false },
+  { id: 'ka_s8', name: 'Nippattu (4 pieces)', calories: 200, protein: 4, carbs: 28, fat: 8, category: 'snacks', region: 'karnataka', isVeg: true, isHighSugar: false, isHighSodium: true, isHighFat: false, isHighProtein: false, isProcessed: true, isHighFiber: false },
+
+  // Karnataka Dinner
+  { id: 'ka_d1', name: 'Ragi Mudde + Bassaru', calories: 280, protein: 10, carbs: 52, fat: 4, category: 'dinner', region: 'karnataka', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
+  { id: 'ka_d2', name: 'Jolada Rotti + Ennegai', calories: 300, protein: 8, carbs: 48, fat: 10, category: 'dinner', region: 'karnataka', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
+  { id: 'ka_d3', name: 'Chitranna + Mosaru', calories: 280, protein: 6, carbs: 50, fat: 8, category: 'dinner', region: 'karnataka', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
+  { id: 'ka_d4', name: 'Kori Rotti', calories: 420, protein: 26, carbs: 42, fat: 18, category: 'dinner', region: 'karnataka', isVeg: false, isHighSugar: false, isHighSodium: true, isHighFat: true, isHighProtein: true, isProcessed: false, isHighFiber: false },
+  { id: 'ka_d5', name: 'Majjige Huli + Rice', calories: 260, protein: 8, carbs: 45, fat: 6, category: 'dinner', region: 'karnataka', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true },
+  { id: 'ka_d6', name: 'Meen Gassi + Rice', calories: 380, protein: 24, carbs: 45, fat: 14, category: 'dinner', region: 'karnataka', isVeg: false, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: true, isProcessed: false, isHighFiber: false },
+  { id: 'ka_d7', name: 'Huggi + Gojju', calories: 300, protein: 10, carbs: 52, fat: 8, category: 'dinner', region: 'karnataka', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: true, isProcessed: false, isHighFiber: true },
+  { id: 'ka_d8', name: 'Chapati + Badanekayi Palya', calories: 260, protein: 7, carbs: 40, fat: 9, category: 'dinner', region: 'karnataka', isVeg: true, isHighSugar: false, isHighSodium: false, isHighFat: false, isHighProtein: false, isProcessed: false, isHighFiber: true }
 ];
