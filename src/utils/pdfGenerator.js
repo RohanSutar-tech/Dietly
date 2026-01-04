@@ -1,5 +1,5 @@
 import jsPDF from 'jspdf';
-import 'jspdf-autotable';
+import autoTable from 'jspdf-autotable';
 
 export const generateDietPDF = (userData, selectedFoods, nutritionGoals, bmi, bmiStatus, recommendationRules) => {
   const doc = new jsPDF();
@@ -76,7 +76,7 @@ export const generateDietPDF = (userData, selectedFoods, nutritionGoals, bmi, bm
     ['Food Preference', getFoodPrefLabel(userData.foodPreference)],
   ];
 
-  doc.autoTable({
+  autoTable(doc, {
     startY: yPosition,
     head: [],
     body: profileData,
@@ -132,7 +132,7 @@ export const generateDietPDF = (userData, selectedFoods, nutritionGoals, bmi, bm
     ['Health Goal', getGoalLabel(userData.goal)],
   ];
 
-  doc.autoTable({
+  autoTable(doc, {
     startY: yPosition,
     head: [],
     body: bmiData,
@@ -168,7 +168,7 @@ export const generateDietPDF = (userData, selectedFoods, nutritionGoals, bmi, bm
     ['Fat', `${nutritionGoals.fat} g`, 'For hormone balance & absorption'],
   ];
 
-  doc.autoTable({
+  autoTable(doc, {
     startY: yPosition,
     head: [nutritionData[0]],
     body: nutritionData.slice(1),
@@ -237,7 +237,7 @@ export const generateDietPDF = (userData, selectedFoods, nutritionGoals, bmi, bm
           `F: ${food.fat}g`
         ]);
 
-        doc.autoTable({
+        autoTable(doc, {
           startY: yPosition,
           head: [['Food Item', 'Hindi Name', 'Calories', 'Protein', 'Carbs', 'Fat']],
           body: tableData,
@@ -290,7 +290,7 @@ export const generateDietPDF = (userData, selectedFoods, nutritionGoals, bmi, bm
       ],
     ];
 
-    doc.autoTable({
+    autoTable(doc, {
       startY: yPosition,
       head: [summaryData[0]],
       body: summaryData.slice(1),
