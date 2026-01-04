@@ -1,7 +1,190 @@
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import { Chart, registerables } from 'chart.js';
+
+// Function to convert logo to base64 for PDF inclusion
+const getLogoAsBase64 = (callback) => {
+  // Create an image element to load the logo
+  const img = new Image();
+  img.crossOrigin = 'Anonymous';
+  img.src = '/logo.png';
+  
+  img.onload = () => {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    // Set canvas dimensions to match the logo
+    canvas.width = img.width;
+    canvas.height = img.height;
+    
+    // Draw the image on the canvas
+    ctx.drawImage(img, 0, 0);
+    
+    // Convert to base64
+    const dataURL = canvas.toDataURL('image/png');
+    callback(dataURL);
+  };
+  
+  img.onerror = () => {
+    callback(null); // Return null if image fails to load
+  };
+};
+
+// Register Chart.js components
+Chart.register(...registerables);
+
+// Offscreen canvas for chart generation
+const createOffscreenCanvas = (width, height) => {
+  const canvas = {
+    width,
+    height,
+    style: {},
+    getContext: () => {
+      // This is a mock context for server-side chart generation
+      return {
+        canvas,
+        fillRect: () => {},
+        clearRect: () => {},
+        getImageData: (x, y, w, h) => ({ data: new Array(w * h * 4) }),
+        fillText: () => {},
+        strokeText: () => {},
+        measureText: () => ({ width: 0 }),
+        arc: () => {},
+        beginPath: () => {},
+        closePath: () => {},
+        clip: () => {},
+        fill: () => {},
+        stroke: () => {},
+        moveTo: () => {},
+        lineTo: () => {},
+        rect: () => {},
+        save: () => {},
+        restore: () => {},
+        scale: () => {},
+        rotate: () => {},
+        translate: () => {},
+        transform: () => {},
+        setTransform: () => {},
+        createLinearGradient: () => ({ addColorStop: () => {} }),
+        createRadialGradient: () => ({ addColorStop: () => {} }),
+        createPattern: () => ({}),
+        drawImage: () => {},
+        createImageData: () => ({ data: new Array(width * height * 4) }),
+        putImageData: () => {},
+        isPointInPath: () => false,
+        font: '',
+        textAlign: 'start',
+        textBaseline: 'alphabetic',
+        fillStyle: '#000000',
+        strokeStyle: '#000000',
+        lineWidth: 1,
+        lineCap: 'butt',
+        lineJoin: 'miter',
+        miterLimit: 10,
+        shadowOffsetX: 0,
+        shadowOffsetY: 0,
+        shadowBlur: 0,
+        shadowColor: 'rgba(0, 0, 0, 0)',
+        globalAlpha: 1,
+        globalCompositeOperation: 'source-over',
+        imageSmoothingEnabled: true,
+        imageSmoothingQuality: 'low',
+      };
+    },
+    toDataURL: (type, encoderOptions) => {
+      // Return a mock data URL
+      return 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==';
+    },
+    addEventListener: () => {},
+    removeEventListener: () => {},
+    dispatchEvent: () => {},
+  };
+  return canvas;
+};
+
+// Function to create pie chart image from nutrition data
+const createNutritionPieChart = (nutritionGoals) => {
+  // Calculate macronutrient percentages based on calories
+  const calories = nutritionGoals.calories;
+  const proteinCalories = nutritionGoals.protein * 4; // 4 cal per gram of protein
+  const carbsCalories = nutritionGoals.carbs * 4; // 4 cal per gram of carbs
+  const fatCalories = nutritionGoals.fat * 9; // 9 cal per gram of fat
+  
+  // Calculate percentages
+  const proteinPercentage = Math.round((proteinCalories / calories) * 100);
+  const carbsPercentage = Math.round((carbsCalories / calories) * 100);
+  const fatPercentage = Math.round((fatCalories / calories) * 100);
+  
+  // Data for the pie chart
+  const data = {
+    labels: ['Protein', 'Carbohydrates', 'Fat'],
+    datasets: [{
+      data: [proteinPercentage, carbsPercentage, fatPercentage],
+      backgroundColor: [
+        '#36A2EB', // Blue for protein
+        '#FFCE56', // Yellow for carbs
+        '#FF6384', // Pink for fat
+      ],
+      borderWidth: 1,
+    }]
+  };
+  
+  // Create an offscreen canvas
+  const canvas = createOffscreenCanvas(400, 400);
+  
+  // Create chart instance
+  const config = {
+    type: 'pie',
+    data: data,
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'top',
+        },
+        title: {
+          display: true,
+          text: 'Macronutrient Distribution'
+        }
+      }
+    },
+  };
+  
+  // Return data URL of the chart
+  // Since we're in a server environment, we'll return a mock chart image
+  // In a real browser environment, we would create the chart and get the data URL
+  return {
+    dataUrl: canvas.toDataURL(),
+    labels: ['Protein', 'Carbohydrates', 'Fat'],
+    values: [proteinPercentage, carbsPercentage, fatPercentage]
+  };
+};
+
+// Function to generate a pie chart and return its image data for PDF
+const generatePieChartImage = (nutritionGoals) => {
+  // Calculate macronutrient percentages based on calories
+  const calories = nutritionGoals.calories;
+  const proteinCalories = nutritionGoals.protein * 4; // 4 cal per gram of protein
+  const carbsCalories = nutritionGoals.carbs * 4; // 4 cal per gram of carbs
+  const fatCalories = nutritionGoals.fat * 9; // 9 cal per gram of fat
+  
+  // Calculate percentages
+  const proteinPercentage = Math.round((proteinCalories / calories) * 100);
+  const carbsPercentage = Math.round((carbsCalories / calories) * 100);
+  const fatPercentage = Math.round((fatCalories / calories) * 100);
+  
+  // Return a simplified representation for PDF generation
+  return {
+    protein: proteinPercentage,
+    carbs: carbsPercentage,
+    fat: fatPercentage
+  };
+};
 
 export const generateDietPDF = (userData, selectedFoods, nutritionGoals, bmi, bmiStatus, recommendationRules) => {
+  // Load the logo first, then generate the PDF
+  getLogoAsBase64((logoBase64) => {
   const doc = new jsPDF();
   const pageWidth = doc.internal.pageSize.getWidth();
   const pageHeight = doc.internal.pageSize.getHeight();
@@ -42,10 +225,26 @@ export const generateDietPDF = (userData, selectedFoods, nutritionGoals, bmi, bm
   doc.setFillColor(...primaryColor);
   doc.rect(0, 0, pageWidth, 45, 'F');
   
-  doc.setTextColor(255, 255, 255);
-  doc.setFontSize(24);
-  doc.setFont('helvetica', 'bold');
-  doc.text('Smart Indian Diet Report', pageWidth / 2, 22, { align: 'center' });
+  // Add logo to the left of the title
+  if (logoBase64) {
+    // Use the actual logo image
+    doc.addImage(logoBase64, 'PNG', 15, 8, 25, 25); // x, y, width, height
+    // Position the title closer to the logo
+    doc.setFontSize(20);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Smart Indian Diet Report', 50, 22, { align: 'left' }); // Positioned right after the logo
+  } else {
+    // Fallback to text logo if image fails to load
+    doc.setFontSize(16);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(255, 255, 255);
+    doc.text('DIETLY', 20, 20);
+    
+    // Position the title closer to the text logo
+    doc.setFontSize(20);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Smart Indian Diet Report', 50, 22, { align: 'left' }); // Positioned right after the text logo
+  }
   
   doc.setFontSize(12);
   doc.setFont('helvetica', 'normal');
@@ -150,7 +349,7 @@ export const generateDietPDF = (userData, selectedFoods, nutritionGoals, bmi, bm
   // BMI Scale visual
   doc.setFontSize(9);
   doc.setTextColor(100, 100, 100);
-  doc.text('BMI Reference: Underweight (<18.5) | Normal (18.5-24.9) | Overweight (25-29.9) | Obese (≥30)', 16, yPosition);
+  doc.text('BMI Reference: Underweight (<18.5) | Normal (18.5-24.9) | Overweight (25-29.9) | Obese (30+)', 16, yPosition);
   yPosition += 15;
 
   // ========== PAGE 2: Nutrition Goals & Recommendations ==========
@@ -179,6 +378,71 @@ export const generateDietPDF = (userData, selectedFoods, nutritionGoals, bmi, bm
   });
 
   yPosition = doc.lastAutoTable.finalY + 15;
+
+  // Nutrition Pie Chart
+  const chartData = generatePieChartImage(nutritionGoals);
+  
+  // Draw the pie chart representation
+  drawSectionHeader('Macronutrient Distribution');
+  
+  // Draw a visual representation of the pie chart using rectangles
+  const chartWidth = 120;
+  const chartHeight = 20;
+  const chartX = (pageWidth - chartWidth) / 2; // Center the chart
+  
+  // Draw the "pie chart" as a segmented bar
+  let currentX = chartX;
+  const totalPercentage = chartData.protein + chartData.carbs + chartData.fat;
+  
+  // Protein segment (Blue)
+  doc.setFillColor(54, 162, 235); // Blue
+  const proteinWidth = (chartData.protein / totalPercentage) * chartWidth;
+  doc.rect(currentX, yPosition, proteinWidth, chartHeight, 'F');
+  
+  currentX += proteinWidth;
+  
+  // Carbs segment (Yellow)
+  doc.setFillColor(255, 206, 86); // Yellow
+  const carbsWidth = (chartData.carbs / totalPercentage) * chartWidth;
+  doc.rect(currentX, yPosition, carbsWidth, chartHeight, 'F');
+  
+  currentX += carbsWidth;
+  
+  // Fat segment (Pink)
+  doc.setFillColor(255, 99, 132); // Pink
+  const fatWidth = (chartData.fat / totalPercentage) * chartWidth;
+  doc.rect(currentX, yPosition, fatWidth, chartHeight, 'F');
+  
+  yPosition += chartHeight + 10;
+  
+  // Add legend below the chart
+  doc.setFontSize(9);
+  doc.setTextColor(...textColor);
+  doc.setFont('helvetica', 'normal');
+  
+  // Position legend items
+  const legendX = (pageWidth - chartWidth) / 2;
+  let legendY = yPosition;
+  
+  // Protein legend
+  doc.setFillColor(54, 162, 235); // Blue
+  doc.rect(legendX, legendY, 5, 5, 'F');
+  doc.setTextColor(...textColor);
+  doc.text(`Protein: ${chartData.protein}%`, legendX + 7, legendY + 4);
+  
+  // Carbs legend
+  doc.setFillColor(255, 206, 86); // Yellow
+  doc.rect(legendX + 40, legendY, 5, 5, 'F');
+  doc.setTextColor(...textColor);
+  doc.text(`Carbs: ${chartData.carbs}%`, legendX + 47, legendY + 4);
+  
+  // Fat legend
+  doc.setFillColor(255, 99, 132); // Pink
+  doc.rect(legendX + 80, legendY, 5, 5, 'F');
+  doc.setTextColor(...textColor);
+  doc.text(`Fat: ${chartData.fat}%`, legendX + 87, legendY + 4);
+  
+  yPosition += 15;
 
   // Smart Filtering Rules
   if (recommendationRules?.length > 0) {
@@ -324,6 +588,7 @@ export const generateDietPDF = (userData, selectedFoods, nutritionGoals, bmi, bm
 
   // Download the PDF
   doc.save(`diet-plan-${new Date().toISOString().split('T')[0]}.pdf`);
+  });
 };
 
 // Helper functions
