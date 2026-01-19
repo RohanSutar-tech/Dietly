@@ -85,7 +85,7 @@ Dietly/
 │   │   └── NotFound.jsx      # 404 error page
 │   │
 │   └── utils/
-│       ├── foodRecommendationEngine.js  # AI-powered food recommendations
+│       ├── foodRecommendationEngine.js  # food recommendations using rule-based algorithm
 │       └── pdfGenerator.js             # PDF export functionality
 │
 ├── public/
